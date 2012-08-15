@@ -1,10 +1,10 @@
 var win = Ti.UI.currentWindow;
 var ServerHandler = require('/includes/ServerHandler');
 
-var tableView = Ti.UI.createTableView({
+var tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,
-	separatorColor: '#4b4b4b',
-	backgroundImage: '/img/row-bg.png',
+	//separatorColor: '#4b4b4b',
+	//backgroundImage: '/img/row-bg.png',
 	scrollIndicatorStyle: Ti.UI.iPhone.ScrollIndicatorStyle.WHITE
 });
 
