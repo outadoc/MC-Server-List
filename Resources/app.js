@@ -19,8 +19,8 @@ var tab1 = Ti.UI.createTab({
 
 var tab2 = Ti.UI.createTab({
 	window: win_more,
-	title: 'More',
-	icon: 'img/controller.png'
+	title: 'Settings',
+	icon: 'img/gear.png'
 });
 
 tabgroup.addTab(tab1);
