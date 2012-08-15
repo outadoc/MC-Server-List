@@ -1,3 +1,5 @@
+exports.isMcStyle = Ti.App.Properties.getBool('mcOrigStyle', true);
+
 exports.init = function(name, host, port) {
 	exports.data = {};
 	exports.data.name = name;
@@ -74,14 +76,12 @@ exports.getServerInfo = function(data, callback) {
 exports.getRow = function(data, callback, state) {
 	var row = Ti.UI.createTableViewRow({
 		height: 75,
-		backgroundImage: '/img/row-bg.png',
-		//backgroundSelectedImage: '/img/row-bg-selected.png',
 		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
 
 	var lbl_name = Ti.UI.createLabel({
 		text: data.name,
-		color: 'white',
+		color: (exports.isMcStyle) ? 'white' : 'black',
 		top: 5,
 		left: 10,
 		width: 250,
@@ -92,7 +92,7 @@ exports.getRow = function(data, callback, state) {
 
 	var lbl_ping = Ti.UI.createLabel({
 		text: (state == exports.state.ERROR) ? '0 ms' : data.ping + ' ms',
-		color: 'lightGray',
+		color: (exports.isMcStyle) ? 'lightGray' : 'gray',
 		font: {
 			fontSize: 16
 		},
@@ -103,7 +103,6 @@ exports.getRow = function(data, callback, state) {
 	row.add(lbl_ping);
 
 	var lbl_desc = Ti.UI.createLabel({
-		color: (state == exports.state.ERROR) ? 'red' : 'lightGray',
 		font: {
 			fontSize: 16
 		},
@@ -117,7 +116,7 @@ exports.getRow = function(data, callback, state) {
 
 	var lbl_slots = Ti.UI.createLabel({
 		text: (state == exports.state.ERROR) ? '??/??' : data.disp + '/' + data.max,
-		color: 'lightGray',
+		color: (exports.isMcStyle) ? 'lightGray' : 'gray',
 		font: {
 			fontSize: 16
 		},
@@ -129,7 +128,7 @@ exports.getRow = function(data, callback, state) {
 
 	var lbl_host = Ti.UI.createLabel({
 		text: data.host,
-		color: '#4b4b4b',
+		color: (exports.isMcStyle) ? '#4b4b4b' : 'lightGray',
 		font: {
 			fontSize: 16
 		},
@@ -154,6 +153,20 @@ exports.getRow = function(data, callback, state) {
 		indicator.show();
 	} else {
 		lbl_desc.setText(data.desc);
+	}
+	
+	if(exports.isMcStyle) {
+		row.setBackgroundImage('/img/row-bg.png');
+	}
+	
+	if(state == exports.state.ERROR) {
+		lbl_desc.setColor('red');
+	} else {
+		if(exports.isMcStyle) {
+			lbl_desc.setColor('lightGray');
+		} else {
+			lbl_desc.setColor('gray');
+		}
 	}
 
 	callback({

@@ -1,12 +1,16 @@
 var win = Ti.UI.currentWindow;
 var ServerHandler = require('/includes/ServerHandler');
+var isMcStyle = Ti.App.Properties.getBool('mcOrigStyle', true);
 
 var tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,
-	//separatorColor: '#4b4b4b',
-	//backgroundImage: '/img/row-bg.png',
 	scrollIndicatorStyle: Ti.UI.iPhone.ScrollIndicatorStyle.WHITE
 });
+
+if(isMcStyle) {
+	tableView.setSeparatorColor('#4b4b4b');
+	tableView.setBackgroundImage('/img/row-bg.png');
+}
 
 win.add(tableView);
 
