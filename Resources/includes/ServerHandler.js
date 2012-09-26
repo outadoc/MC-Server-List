@@ -15,7 +15,7 @@ exports.init = function(name, host, port) {
 }
 
 exports.getServerInfo = function(data, callback) {
-	data.port = (data.port == null) ? 25565 : port
+	data.port = (data.port == null) ? 25565 : data.port;
 
 	var timestamp = (new Date).getTime();
 	var ping = 0;
