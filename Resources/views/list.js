@@ -14,42 +14,50 @@ if(isMcStyle) {
 
 win.add(tableView);
 
-var list = [{
-	name: 'FRLBS',
-	host: 'frcubes.net'
-}, {
-	name: 'Outrant',
-	host: 'minecraft.outrant.be'
-}, {
-	name: 'Team Kigyar',
-	host: 'teamkigyar.fr'
-}, {
-	name: 'WTCraft',
-	host: 'jouer.wtcraft.com'
-}];
+function updateList() {
+	var list = [{
+		name: 'FRLBS',
+		host: 'frcubes.net'
+	}, {
+		name: 'Outrant',
+		host: 'minecraft.outrant.be'
+	}, {
+		name: 'Team Kigyar',
+		host: 'teamkigyar.fr'
+	}, {
+		name: 'WTCraft',
+		host: 'jouer.wtcraft.com'
+	}];
 
-for(var i = 0; i < list.length; i++) {
-	var data = {
-		name: list[i].name,
-		host: list[i].host,
-		id: i
-	};
+	for(var i = 0; i < list.length; i++) {
+		var data = {
+			name: list[i].name,
+			host: list[i].host,
+			id: i
+		};
 
-	//create temp row
-	ServerHandler.getRow(data, function(e) {
-		tableView.appendRow(e.row);
-	}, ServerHandler.state.POLLING);
+		//create temp row
+		ServerHandler.getRow(data, function(e) {
+			tableView.appendRow(e.row);
+		}, ServerHandler.state.POLLING);
 
-	//get real info
-	ServerHandler.getServerInfo(data, function(e) {
-		e.row.data = e.data;
-		tableView.updateRow(e.data.id, e.row);
-	});
+		//get real info
+		ServerHandler.getServerInfo(data, function(e) {
+			e.row.data = e.data;
+			tableView.updateRow(e.data.id, e.row);
+		});
+	}
 }
+
+Ti.App.addEventListener('reload', updateList);
 
 var b_add = Ti.UI.createButton({
 	image: '/img/add.png',
 	backgroundImage: '/img/menubar-button.png'
+});
+
+b_add.addEventListener('click', function(e) {
+	
 });
 
 var b_edit = Ti.UI.createButton({
@@ -67,3 +75,5 @@ b_edit.addEventListener('click', function(e) {
 
 win.setRightNavButton(b_add);
 win.setLeftNavButton(b_edit);
+
+updateList();

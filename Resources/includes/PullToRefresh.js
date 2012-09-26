@@ -107,6 +107,7 @@ function tv_pull(data) {
 	var reloading = false;
 
 	function beginReloading() {
+		Ti.App.fireEvent('reload', null);
 		setTimeout(endReloading, 2000);
 	}
 
