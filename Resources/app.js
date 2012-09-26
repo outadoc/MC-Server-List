@@ -1,3 +1,8 @@
+var db = Ti.Database.open('servers');
+db.execute('CREATE TABLE IF NOT EXISTS servers (id INTEGER PRIMARY KEY, name VARCHAR(16) NOT NULL, host VARCHAR(32), port INTEGER)');
+db.file.setRemoteBackup(true);
+db.close();
+
 var tabgroup = Ti.UI.createTabGroup();
 
 var win_list = Ti.UI.createWindow({
