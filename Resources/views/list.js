@@ -15,25 +15,16 @@ if(isMcStyle) {
 win.add(tableView);
 
 function updateList() {
-	var list = [{
-		name: 'FRLBS',
-		host: 'frcubes.net'
-	}, {
-		name: 'Outrant',
-		host: 'minecraft.outrant.be'
-	}, {
-		name: 'Team Kigyar',
-		host: 'teamkigyar.fr'
-	}, {
-		name: 'WTCraft',
-		host: 'jouer.wtcraft.com'
-	}];
+	var db = Ti.Database.open('servers');
+	var servers = db.execute('SELECT * FROM servers');
+	tableView.setData([]);
 
-	for(var i = 0; i < list.length; i++) {
+	while(servers.isValidRow()) {
 		var data = {
-			name: list[i].name,
-			host: list[i].host,
-			id: i
+			name: servers.fieldByName('name'),
+			host: servers.fieldByName('host'),
+			port: servers.fieldByName('port'),
+			id: servers.fieldByName('id')
 		};
 
 		//create temp row
@@ -44,9 +35,13 @@ function updateList() {
 		//get real info
 		ServerHandler.getServerInfo(data, function(e) {
 			e.row.data = e.data;
-			tableView.updateRow(e.data.id, e.row);
+			tableView.updateRow(e.data.id - 1, e.row);
 		});
+
+		servers.next();
 	}
+
+	servers.close();
 }
 
 Ti.App.addEventListener('reload', updateList);
@@ -57,7 +52,7 @@ var b_add = Ti.UI.createButton({
 });
 
 b_add.addEventListener('click', function(e) {
-	
+
 });
 
 var b_edit = Ti.UI.createButton({
@@ -76,4 +71,4 @@ b_edit.addEventListener('click', function(e) {
 win.setRightNavButton(b_add);
 win.setLeftNavButton(b_edit);
 
-updateList();
+updateList(); 
