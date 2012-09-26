@@ -1,5 +1,5 @@
 var db = Ti.Database.open('servers');
-db.execute('CREATE TABLE IF NOT EXISTS servers (id INTEGER PRIMARY KEY, name VARCHAR(16) NOT NULL, host VARCHAR(32), port INTEGER)');
+db.execute('CREATE TABLE IF NOT EXISTS servers (id INTEGER PRIMARY KEY, name VARCHAR(16) NOT NULL, host VARCHAR(32) NOT NULL, port INTEGER DEFAULT 25565)');
 db.file.setRemoteBackup(true);
 db.close();
 
