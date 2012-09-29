@@ -1,4 +1,6 @@
 function tv_pull(data) {
+	var isMcStyle = Ti.App.Properties.getBool('mcOrigStyle', true);
+	
 	function formatDate() {
 		var date = new Date();
 
@@ -28,13 +30,13 @@ function tv_pull(data) {
 	var tableView = Ti.UI.createTableView(data);
 
 	var tableHeader = Ti.UI.createView({
-		backgroundColor: '#e2e7ed',
+		backgroundColor: (isMcStyle) ? '#5c4a3c' : '#e2e7ed',
 		width: 320,
 		height: 80
 	});
 
 	var border = Ti.UI.createView({
-		backgroundColor: "#4b4b4b",
+		backgroundColor: (isMcStyle) ? '#4a3b30' : '#4b4b4b',
 		height: 1,
 		bottom: 0
 	});
@@ -42,7 +44,7 @@ function tv_pull(data) {
 	tableHeader.add(border);
 
 	var arrow = Ti.UI.createView({
-		backgroundImage: '/img/arrow.png',
+		backgroundImage: (isMcStyle) ? '/img/arrow-mc.png' : '/img/arrow.png',
 		width: 23,
 		height: 53,
 		bottom: 15,
@@ -57,13 +59,13 @@ function tv_pull(data) {
 		width: 200,
 		bottom: 35,
 		height: Ti.UI.SIZE,
-		color: '#576c89',
+		color: (isMcStyle) ? '#a69588' : '#576c89',
 		textAlign: 'left',
 		font: {
 			fontSize: 14,
 			fontWeight: 'bold'
 		},
-		shadowColor: '#f6f8fa',
+		shadowColor: (isMcStyle) ? '#6b5c50' : '#f6f8fa',
 		shadowOffset: {
 			x: 0,
 			y: 1
@@ -78,12 +80,12 @@ function tv_pull(data) {
 		width: 200,
 		bottom: 20,
 		height: Ti.UI.SIZE,
-		color: '#576c89',
+		color: (isMcStyle) ? '#a69588' : '#576c89',
 		textAlign: 'left',
 		font: {
 			fontSize: 13
 		},
-		shadowColor: '#f6f8fa',
+		shadowColor: (isMcStyle) ? '#6b5c50' : '#f6f8fa',
 		shadowOffset: {
 			x: 0,
 			y: 1
