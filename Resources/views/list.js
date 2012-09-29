@@ -55,7 +55,8 @@ b_add.addEventListener('click', function(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'subviews/add.js',
 		title: 'Add a server',
-		barImage: 'img/menubar.png',
+		barImage: '/img/menubar.png',
+		backgroundColor: '#574537',
 		modal: true
 	});
 	
