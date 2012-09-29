@@ -77,4 +77,15 @@ var b_done = Ti.UI.createButton({
 	backgroundImage: '/img/menubar-button.png'
 });
 
+b_done.addEventListener('click', function(e) {
+	if(txtfield_name.getValue() == '' || txtfield_host.getValue() == '') {
+		(Ti.UI.createAlertDialog({
+			title: 'Not so fast!',
+			message: 'You need to specify at least the "Name" and "Host" fields to proceed.'
+		})).show();
+	} else {
+		
+	}
+});
+
 win.setRightNavButton(b_done);
