@@ -4,7 +4,8 @@ var isMcStyle = Ti.App.Properties.getBool('mcOrigStyle', true);
 
 var tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,
-	scrollIndicatorStyle: Ti.UI.iPhone.ScrollIndicatorStyle.WHITE
+	scrollIndicatorStyle: Ti.UI.iPhone.ScrollIndicatorStyle.WHITE,
+	editable: true
 });
 
 if(isMcStyle) {
@@ -18,33 +19,42 @@ function updateList() {
 	var db = Ti.Database.open('servers');
 	var servers = db.execute('SELECT * FROM servers');
 	tableView.setData([]);
+	var i = 0;
 
 	while(servers.isValidRow()) {
 		var data = {
 			name: servers.fieldByName('name'),
 			host: servers.fieldByName('host'),
 			port: servers.fieldByName('port'),
-			id: servers.fieldByName('id')
+			id: i
 		};
 
 		//create temp row
-		ServerHandler.getRow(data, function(e) {
+		ServerHandler.getRow(data, i, function(e) {
 			tableView.appendRow(e.row);
 		}, ServerHandler.state.POLLING);
 
 		//get real info
-		ServerHandler.getServerInfo(data, function(e) {
+		ServerHandler.getServerInfo(data, i, function(e) {
 			e.row.data = e.data;
-			tableView.updateRow(e.data.id - 1, e.row);
+			tableView.updateRow(e.index, e.row);
 		});
 
 		servers.next();
+		i++;
 	}
 
 	servers.close();
 }
 
 Ti.App.addEventListener('reload', updateList);
+
+tableView.addEventListener('delete', function(e) {
+	//console.log('deleting id ' + e.rowData.id)
+	var db = Ti.Database.open('servers');
+	db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.id);
+	db.close();
+});
 
 var b_add = Ti.UI.createButton({
 	image: '/img/add.png',
@@ -59,11 +69,11 @@ b_add.addEventListener('click', function(e) {
 		backgroundImage: '/img/full-bg.png',
 		modal: true
 	});
-	
+
 	win_add.addEventListener('close', function(e) {
 		updateList();
 	});
-	
+
 	win_add.open();
 });
 
@@ -83,4 +93,4 @@ b_edit.addEventListener('click', function(e) {
 win.setRightNavButton(b_add);
 win.setLeftNavButton(b_edit);
 
-updateList(); 
+updateList();

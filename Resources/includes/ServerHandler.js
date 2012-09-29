@@ -14,7 +14,7 @@ exports.init = function(name, host, port) {
 	console.log(exports.data)
 }
 
-exports.getServerInfo = function(data, callback) {
+exports.getServerInfo = function(data, index, callback) {
 	data.port = (data.port == null) ? 25565 : data.port;
 
 	var timestamp = (new Date).getTime();
@@ -35,7 +35,7 @@ exports.getServerInfo = function(data, callback) {
 			});
 		},
 		error: function(e) {
-			exports.getRow(data, callback, exports.state.ERROR);
+			exports.getRow(data, index, callback, exports.state.ERROR);
 		}
 	});
 
@@ -59,13 +59,13 @@ exports.getServerInfo = function(data, callback) {
 					data.max = infoArray[2];
 					data.ping = ping;
 
-					exports.getRow(data, callback, exports.state.SUCCESS);
+					exports.getRow(data, index, callback, exports.state.SUCCESS);
 				}
 			} else {
-				exports.getRow(data, callback, exports.state.ERROR);
+				exports.getRow(data, index, callback, exports.state.ERROR);
 			}
 		} catch (ex) {
-			exports.getRow(data, callback, exports.state.ERROR);
+			exports.getRow(data, index, callback, exports.state.ERROR);
 		}
 	}
 
@@ -73,7 +73,7 @@ exports.getServerInfo = function(data, callback) {
 	socket.connect();
 }
 
-exports.getRow = function(data, callback, state) {
+exports.getRow = function(data, index, callback, state) {
 	var row = Ti.UI.createTableViewRow({
 		height: 75,
 		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
@@ -171,6 +171,7 @@ exports.getRow = function(data, callback, state) {
 
 	callback({
 		row: row,
+		index: index,
 		data: data
 	});
 }
