@@ -60,6 +60,10 @@ b_add.addEventListener('click', function(e) {
 		modal: true
 	});
 	
+	win_add.addEventListener('close', function(e) {
+		updateList();
+	});
+	
 	win_add.open();
 });
 
