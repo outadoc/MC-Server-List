@@ -71,3 +71,10 @@ var txtfield_port = Ti.UI.createTextField({
 });
 
 win.add(txtfield_port);
+
+var b_done = Ti.UI.createButton({
+	image: '/img/check.png',
+	backgroundImage: '/img/menubar-button.png'
+});
+
+win.setRightNavButton(b_done);
