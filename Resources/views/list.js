@@ -56,7 +56,7 @@ b_add.addEventListener('click', function(e) {
 		url: 'subviews/add.js',
 		title: 'Add a server',
 		barImage: '/img/menubar.png',
-		backgroundColor: '#574537',
+		backgroundImage: '/img/full-bg.png',
 		modal: true
 	});
 	
