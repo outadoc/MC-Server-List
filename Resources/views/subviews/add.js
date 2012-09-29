@@ -81,10 +81,16 @@ b_done.addEventListener('click', function(e) {
 	if(txtfield_name.getValue() == '' || txtfield_host.getValue() == '') {
 		(Ti.UI.createAlertDialog({
 			title: 'Not so fast!',
-			message: 'You need to specify at least the "Name" and "Host" fields to proceed.'
+			message: 'You need to specify at least the "name" and "host" fields to proceed.'
 		})).show();
 	} else {
-		
+		var db = Ti.Database.open('servers');
+		db.execute('INSERT INTO servers (name, host, port) VALUES(?, ?, ?)', txtfield_name.getValue(), txtfield_host.getValue(), txtfield_port.getValue());
+		(Ti.UI.createAlertDialog({
+			title: 'Success!',
+			message: 'Successfully added the server to the database.',
+			buttonNames: ['Thanks <3']
+		})).show();
 	}
 });
 
