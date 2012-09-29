@@ -26,6 +26,7 @@ function updateList() {
 			name: servers.fieldByName('name'),
 			host: servers.fieldByName('host'),
 			port: servers.fieldByName('port'),
+			sqlid: servers.fieldByName('id'),
 			id: i
 		};
 
@@ -52,7 +53,7 @@ Ti.App.addEventListener('reload', updateList);
 tableView.addEventListener('delete', function(e) {
 	//console.log('deleting id ' + e.rowData.id)
 	var db = Ti.Database.open('servers');
-	db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.id);
+	db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.sqlid);
 	db.close();
 });
 
