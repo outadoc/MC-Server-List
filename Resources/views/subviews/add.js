@@ -43,6 +43,9 @@ win.add(lbl_host);
 var txtfield_host = Ti.UI.createTextField({
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 	hintText: 'server.example.com',
+	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
+	autocorrect: false,
+	keyboardType: Ti.UI.KEYBOARD_URL,
 	left: 20,
 	right: 130,
 	top: 130,
