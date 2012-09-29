@@ -52,7 +52,14 @@ var b_add = Ti.UI.createButton({
 });
 
 b_add.addEventListener('click', function(e) {
-
+	var win_add = Ti.UI.createWindow({
+		url: 'subviews/add.js',
+		title: 'Add a server',
+		barImage: 'img/menubar.png',
+		modal: true
+	});
+	
+	win_add.open();
 });
 
 var b_edit = Ti.UI.createButton({
