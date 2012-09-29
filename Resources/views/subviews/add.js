@@ -89,6 +89,7 @@ b_done.addEventListener('click', function(e) {
 	} else {
 		var db = Ti.Database.open('servers');
 		db.execute('INSERT INTO servers (name, host, port) VALUES(?, ?, ?)', txtfield_name.getValue(), txtfield_host.getValue(), (txtfield_port.getValue() == '') ? 25565 : txtfield_port.getValue());
+		db.close();
 		
 		(Ti.UI.createAlertDialog({
 			title: 'Success!',
