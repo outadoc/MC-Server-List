@@ -1,5 +1,8 @@
 var win = Ti.UI.currentWindow;
+
 var ServerHandler = require('/includes/ServerHandler');
+Ti.include('/includes/lib/json.i18n.js');
+
 var isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
 
 var tableView = require('/includes/PullToRefresh')({
