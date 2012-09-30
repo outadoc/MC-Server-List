@@ -54,7 +54,7 @@ function tv_pull(data) {
 	tableHeader.add(arrow);
 
 	var statusLabel = Ti.UI.createLabel({
-		text: 'Pull to refresh...',
+		text: I('main.pullToRefresh.pull'),
 		left: 95,
 		width: 200,
 		bottom: 35,
@@ -75,7 +75,7 @@ function tv_pull(data) {
 	tableHeader.add(statusLabel);
 
 	var lastUpdatedLabel = Ti.UI.createLabel({
-		text: 'Updated: ' + formatDate(),
+		text: I('main.pullToRefresh.updated', formatDate()),
 		left: 95,
 		width: 200,
 		bottom: 20,
@@ -136,7 +136,7 @@ function tv_pull(data) {
 				transform: t,
 				duration: 180
 			});
-			statusLabel.text = "Release to refresh...";
+			statusLabel.text = I('main.pullToRefresh.release');
 		} else if((offset > -70.0 && offset < 0 ) && pulling && !reloading) {
 			pulling = false;
 			var t = Ti.UI.create2DMatrix();
@@ -144,7 +144,7 @@ function tv_pull(data) {
 				transform: t,
 				duration: 180
 			});
-			statusLabel.text = "Pull down to refresh...";
+			statusLabel.text = I('main.pullToRefresh.pull');
 		}
 	});
 
@@ -154,7 +154,7 @@ function tv_pull(data) {
 			pulling = false;
 			arrow.hide();
 			actInd.show();
-			statusLabel.setText('Reloading...');
+			statusLabel.setText(I('main.pullToRefresh.reloading'));
 
 			tableView.setContentInsets({
 				top: 70

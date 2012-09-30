@@ -75,7 +75,7 @@ var b_add = Ti.UI.createButton({
 b_add.addEventListener('click', function(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'add.js',
-		title: 'Add a server',
+		title: I('addServer.title'),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png',
 		modal: true

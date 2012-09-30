@@ -13,7 +13,7 @@ b_close.addEventListener('click', function(e) {
 win.setLeftNavButton(b_close);
 
 var lbl_name = Ti.UI.createLabel({
-	text: 'Name of the server:',
+	text: I('addServer.labels.name.title'),
 	color: 'white',
 	left: 20,
 	top: 20
@@ -23,7 +23,7 @@ win.add(lbl_name);
 
 var txtfield_name = Ti.UI.createTextField({
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	hintText: 'My Awesome Server',
+	hintText: I('addServer.labels.name.placeholder'),
 	left: 20,
 	right: 20,
 	top: 50,
@@ -33,7 +33,7 @@ var txtfield_name = Ti.UI.createTextField({
 win.add(txtfield_name);
 
 var lbl_host = Ti.UI.createLabel({
-	text: 'Host (IP address):',
+	text: I('addServer.labels.host.title'),
 	color: 'white',
 	left: 20,
 	top: 100
@@ -43,7 +43,7 @@ win.add(lbl_host);
 
 var txtfield_host = Ti.UI.createTextField({
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-	hintText: 'server.example.com',
+	hintText: I('addServer.labels.host.placeholder'),
 	autocapitalization: Ti.UI.TEXT_AUTOCAPITALIZATION_NONE,
 	autocorrect: false,
 	keyboardType: Ti.UI.KEYBOARD_URL,
@@ -56,7 +56,7 @@ var txtfield_host = Ti.UI.createTextField({
 win.add(txtfield_host);
 
 var lbl_port = Ti.UI.createLabel({
-	text: 'Port:',
+	text: I('addServer.labels.port.title'),
 	color: 'white',
 	left: 200,
 	top: 100
@@ -84,8 +84,8 @@ var b_done = Ti.UI.createButton({
 b_done.addEventListener('click', function(e) {
 	if(txtfield_name.getValue() == '' || txtfield_host.getValue() == '') {
 		(Ti.UI.createAlertDialog({
-			title: 'Not so fast!',
-			message: 'You need to specify at least the "name" and "host" fields to proceed.'
+			title: I('addServer.confirm.error.title'),
+			message: I('addServer.confirm.error.message')
 		})).show();
 	} else {
 		var db = Ti.Database.open('servers');
@@ -93,9 +93,9 @@ b_done.addEventListener('click', function(e) {
 		db.close();
 		
 		(Ti.UI.createAlertDialog({
-			title: 'Success!',
-			message: 'Successfully added the server to the database.',
-			buttonNames: ['Thanks <3']
+			title: I('addServer.confirm.success.title'),
+			message: I('addServer.confirm.success.message'),
+			buttonNames: [I('addServer.confirm.success.button')]
 		})).show();
 		
 		win.close();

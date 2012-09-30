@@ -10,7 +10,7 @@
 
 	var win_list = Ti.UI.createWindow({
 		url: 'views/list.js',
-		title: 'Server List',
+		title: I('main.title'),
 		barImage: 'img/menubar.png',
 		tabBarHidden: true
 	});

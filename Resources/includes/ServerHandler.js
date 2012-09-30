@@ -166,10 +166,10 @@ exports.getRow = function(data, index, callback, state) {
 	//fix the labels depending on the state
 	if(state == exports.state.ERROR) {
 		//if something went wrong, show an error message instead of the description
-		lbl_desc.setText('Can\'t reach server');
+		lbl_desc.setText(I('main.item.error'));
 	} else if(state == exports.state.POLLING) {
 		//if we're only polling the server, set its description to this
-		lbl_desc.setText('Polling server...');
+		lbl_desc.setText(I('main.item.polling'));
 		//and hide ping and slots availability, they're useless in this situation
 		lbl_ping.setVisible(false);
 		lbl_slots.setVisible(false);
