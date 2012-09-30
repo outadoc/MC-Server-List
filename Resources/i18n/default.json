@@ -1,0 +1,41 @@
+{
+	"main": {
+		"title": "Server List for MC",
+		"pullToRefresh": {
+			"pull": "Pull to refresh...",
+			"updated": "Updated: %s",
+			"release": "Release to refresh...",
+			"reloading": "Reloading..."
+		},
+		"item": {
+			"error": "Can't reach server",
+			"polling": "Polling server..."
+		}
+	},
+	"addServer": {
+		"labels": {
+			"name": {
+				"title": "Name of the server:",
+				"placeholder": "My Awesome Server"
+			},
+			"host": {
+				"title": "Host (IP address)",
+				"placeholder": "server.example.com"
+			},
+			"port": {
+				"title": "Port:"
+			}
+		},
+		"confirm": {
+			"error": {
+				"title": "Not so fast!",
+				"message": "You need to specify at least the \"name\" and \"host\" fields to proceed."
+			},
+			"success": {
+				"title": "Success!",
+				"message": "Successfully added the server to the database.",
+				"okButton": "Thanks <3"
+			}
+		}
+	}
+}
