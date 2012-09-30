@@ -1,0 +1,42 @@
+{
+	"main": {
+		"title": "Liste des serveurs",
+		"pullToRefresh": {
+			"pull": "Tirez pour actualiser...",
+			"updated": "Actualisé : %s",
+			"release": "Relâchez pour actualiser...",
+			"reloading": "Chargement..."
+		},
+		"item": {
+			"error": "Serveur injoignable",
+			"polling": "Interrogation du serveur..."
+		}
+	},
+	"addServer": {
+		"title": "Ajouter un serveur",
+		"labels": {
+			"name": {
+				"title": "Nom du serveur :",
+				"placeholder": "Mon super serveur"
+			},
+			"host": {
+				"title": "Hôte (adresse IP)",
+				"placeholder": "mc.exemple.com"
+			},
+			"port": {
+				"title": "Port :"
+			}
+		},
+		"confirm": {
+			"error": {
+				"title": "Pas si vite !",
+				"message": "Vous devez spécifier au moins les champs \"nom\" et \"hôte\" pour continuer."
+			},
+			"success": {
+				"title": "Succès !",
+				"message": "Le serveur a été ajouté avec succès.",
+				"okButton": "Merci <3"
+			}
+		}
+	}
+}
