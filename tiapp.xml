@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-    <property name="acs-oauth-secret-production" type="string">uaYvuDAI9qaPMGJ5qAe9MEO8LTEXLAou</property>
-    <property name="acs-oauth-key-production" type="string">OgAMmebwOedcO5mrrmoTNTMBTxa5FYzE</property>
-    <property name="acs-api-key-production" type="string">maM203q19FJm7aXvaqJuet4WNnaNgIvl</property>
-    <property name="acs-oauth-secret-development" type="string">eDf7gKKyUtCt4fsgSRkjLdMWc66mijVQ</property>
-    <property name="acs-oauth-key-development" type="string">B8qCUGFjC9Pa9sUsPsgPQDD3GoXcsMjR</property>
-    <property name="acs-api-key-development" type="string">asrVKX2e4knoLzxgFhX3OOIZW1mLsAoJ</property>
     <deployment-targets>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
@@ -28,7 +22,7 @@
     <statusbar-hidden>false</statusbar-hidden>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
-    <analytics>true</analytics>
+    <analytics>false</analytics>
     <guid>022c44f7-2261-440a-b96e-bfe85494d00e</guid>
     <property name="ti.ui.defaultunit">system</property>
     <iphone>
