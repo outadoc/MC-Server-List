@@ -13,6 +13,7 @@
 		}
 	},
 	"addServer": {
+		"title": "Add a server",
 		"labels": {
 			"name": {
 				"title": "Name of the server:",
