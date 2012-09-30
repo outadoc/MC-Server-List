@@ -1,6 +1,6 @@
 {
 	"main": {
-		"title": "Server List for MC",
+		"title": "Server List",
 		"pullToRefresh": {
 			"pull": "Pull to refresh...",
 			"updated": "Updated: %s",
