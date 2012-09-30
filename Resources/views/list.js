@@ -16,12 +16,17 @@ if(isMcStyle) {
 win.add(tableView);
 
 function updateList() {
+	//opening the database containing the servers that we will display
 	var db = Ti.Database.open('servers');
 	var servers = db.execute('SELECT * FROM servers');
+	//erase the existing tableview entries
 	tableView.setData([]);
+	//this index corresponds to the tableviewrow id
 	var i = 0;
-
+	
+	//loop through the servers
 	while(servers.isValidRow()) {
+		//getting all the data corresponding to the row, it will be useful later
 		var data = {
 			name: servers.fieldByName('name'),
 			host: servers.fieldByName('host'),
@@ -30,7 +35,7 @@ function updateList() {
 			id: i
 		};
 
-		//create temp row
+		//create temporary row, that will say "polling server..."
 		ServerHandler.getRow(data, i, function(e) {
 			tableView.appendRow(e.row);
 		}, ServerHandler.state.POLLING);
@@ -38,13 +43,16 @@ function updateList() {
 		//get real info
 		ServerHandler.getServerInfo(data, i, function(e) {
 			e.row.data = e.data;
+			//update the existing temporary row and update it in consequence
 			tableView.updateRow(e.index, e.row);
 		});
-
+		
+		//next server, next row
 		servers.next();
 		i++;
 	}
-
+	
+	//we're done with the database
 	servers.close();
 }
 
