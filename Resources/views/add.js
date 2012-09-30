@@ -95,7 +95,7 @@ b_done.addEventListener('click', function(e) {
 		(Ti.UI.createAlertDialog({
 			title: I('addServer.confirm.success.title'),
 			message: I('addServer.confirm.success.message'),
-			buttonNames: [I('addServer.confirm.success.button')]
+			buttonNames: [I('addServer.confirm.success.okButton')]
 		})).show();
 		
 		win.close();
