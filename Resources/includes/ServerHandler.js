@@ -10,8 +10,6 @@ exports.init = function(name, host, port) {
 	} else {
 		exports.data.port = 25565;
 	}
-
-	console.log(exports.data)
 }
 
 exports.getServerInfo = function(data, index, callback) {
