@@ -1,6 +1,6 @@
 var win = Ti.UI.currentWindow;
 var ServerHandler = require('/includes/ServerHandler');
-var isMcStyle = Ti.App.Properties.getBool('ui_mc_style', true);
+var isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
 
 var tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,

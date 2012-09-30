@@ -1,5 +1,5 @@
 function tv_pull(data) {
-	var isMcStyle = Ti.App.Properties.getBool('ui_mc_style', true);
+	var isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
 	
 	function formatDate() {
 		var date = new Date();

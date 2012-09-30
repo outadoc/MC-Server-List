@@ -1,4 +1,4 @@
-exports.isMcStyle = Ti.App.Properties.getBool('ui_mc_style', true);
+exports.isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
 
 exports.init = function(name, host, port) {
 	exports.data = {};
