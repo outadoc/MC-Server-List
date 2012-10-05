@@ -13,7 +13,8 @@
 		title: I('main.title'),
 		barColor: '#85644b',
 		barImage: 'img/menubar.png',
-		tabBarHidden: true
+		tabBarHidden: true,
+		backgroundImage: '/img/full-bg.png'
 	});
 
 	var tab1 = Ti.UI.createTab({
