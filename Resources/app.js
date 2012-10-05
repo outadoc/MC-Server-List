@@ -11,6 +11,7 @@
 	var win_list = Ti.UI.createWindow({
 		url: 'views/list.js',
 		title: I('main.title'),
+		barColor: '#85644b',
 		barImage: 'img/menubar.png',
 		tabBarHidden: true
 	});
