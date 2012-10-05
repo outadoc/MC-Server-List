@@ -13,7 +13,7 @@ var tableView = require('/includes/PullToRefresh')({
 
 if(isMcStyle) {
 	tableView.setSeparatorColor('#4b4b4b');
-	tableView.setBackgroundImage('/img/row-bg.png');
+	tableView.setBackgroundImage('/img/full-bg.png');
 }
 
 win.add(tableView);

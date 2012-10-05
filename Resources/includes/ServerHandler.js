@@ -187,7 +187,7 @@ exports.getRow = function(data, index, callback, state) {
 	
 	if(exports.isMcStyle) {
 		//if we want a minecraft tiled background, do eet
-		row.setBackgroundImage('/img/row-bg.png');
+		row.setBackgroundColor('transparent');
 	}
 	
 	//setting the right colors following the state
