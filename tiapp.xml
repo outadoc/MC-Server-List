@@ -9,12 +9,12 @@
     </deployment-targets>
     <sdk-version>2.1.3.GA</sdk-version>
     <id>fr.outadev.mcserverlist</id>
-    <name>MC Server List</name>
+    <name>Server List</name>
     <version>1.0</version>
-    <publisher>outadoc</publisher>
+    <publisher>Baptiste Candellier</publisher>
     <url>http://dev.outadoc.fr</url>
     <description>not specified</description>
-    <copyright>2012 by outadoc</copyright>
+    <copyright>2012 Baptiste Candellier</copyright>
     <icon>icon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
@@ -48,7 +48,5 @@
         </splash>
         <theme>default</theme>
     </mobileweb>
-    <modules>
-        <module platform="commonjs" version="2.1.0">ti.cloud</module>
-    </modules>
+    <modules/>
 </ti:app>
