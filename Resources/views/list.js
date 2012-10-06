@@ -104,4 +104,11 @@ b_edit.addEventListener('click', function(e) {
 win.setRightNavButton(b_add);
 win.setLeftNavButton(b_edit);
 
+var b_info_win = Ti.UI.createButton({
+	style: (isMcStyle) ? Ti.UI.iPhone.SystemButton.INFO_LIGHT : Ti.UI.iPhone.SystemButton.INFO_DARK,
+	bottom: 10,
+	right: 10
+});
+
+win.add(b_info_win);
 updateList();
