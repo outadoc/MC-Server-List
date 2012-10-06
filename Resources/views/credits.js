@@ -1,6 +1,17 @@
 var win = Ti.UI.currentWindow;
 Ti.include('/includes/lib/json.i18n.js');
 
+var b_close = Ti.UI.createButton({
+	backgroundImage: '/img/menubar-button.png',
+	image: '/img/back.png'
+});
+
+b_close.addEventListener('click', function(e) {
+	win.close();
+});
+
+win.setLeftNavButton(b_close);
+
 var scrollView = Ti.UI.createScrollView({
 	height: Ti.UI.FILL,
 	width: Ti.UI.FILL,
@@ -35,7 +46,7 @@ var lbl_app = Ti.UI.createLabel({
 scrollView.add(lbl_app);
 
 var lbl_credits = Ti.UI.createLabel({
-	text: I('credits.developer') + ' Baptiste Candellier (outadoc) for outa[dev]\n\n' + I('credits.platform') + ' Appcelerator Titanium\n\n' + I('credits.modules') + ' Keychain module by ClearlyInnovative\n\n' + I('credits.thanks') + '\nElarcis, Antoine Cognard, EphysPotato, Ramikaze',
+	text: I('credits.developer') + ' Baptiste Candellier (outadoc) for outa[dev]\n\n' + I('credits.platform') + ' Appcelerator Titanium\n\n',
 	font: {
 		fontSize: 16
 	},
