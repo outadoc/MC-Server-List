@@ -26,7 +26,7 @@ function updateList() {
 	tableView.setData([]);
 	//this index corresponds to the tableviewrow id
 	var i = 0;
-	
+
 	//loop through the servers
 	while(servers.isValidRow()) {
 		//getting all the data corresponding to the row, it will be useful later
@@ -49,12 +49,12 @@ function updateList() {
 			//update the existing temporary row and update it in consequence
 			tableView.updateRow(e.index, e.row);
 		});
-		
+
 		//next server, next row
 		servers.next();
 		i++;
 	}
-	
+
 	//we're done with the database
 	servers.close();
 }
@@ -108,6 +108,17 @@ var b_info_win = Ti.UI.createButton({
 	style: (isMcStyle) ? Ti.UI.iPhone.SystemButton.INFO_LIGHT : Ti.UI.iPhone.SystemButton.INFO_DARK,
 	bottom: 10,
 	right: 10
+});
+
+b_info_win.addEventListener('click', function(e) {
+	var win_info = Ti.UI.createWindow({
+		title: 'Credits',
+		url: 'credits.js'
+	});
+
+	win_info.open({
+		modal: true
+	});
 });
 
 win.add(b_info_win);
