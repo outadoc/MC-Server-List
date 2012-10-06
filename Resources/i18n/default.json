@@ -38,5 +38,10 @@
 				"okButton": "Thanks <3"
 			}
 		}
+	},
+	"credits": {
+		"title": "Credits",
+		"developer": "Developer: ",
+		"platform": "Platforme: "
 	}
 }
