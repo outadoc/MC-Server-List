@@ -77,15 +77,16 @@ b_add.addEventListener('click', function(e) {
 		url: 'add.js',
 		title: I('addServer.title'),
 		barImage: '/img/menubar.png',
-		backgroundImage: '/img/full-bg.png',
-		modal: true
+		backgroundImage: '/img/full-bg.png'
 	});
 
 	win_add.addEventListener('close', function(e) {
 		updateList();
 	});
 
-	win_add.open();
+	win_add.open({
+		modal: true
+	});
 });
 
 var b_edit = Ti.UI.createButton({
