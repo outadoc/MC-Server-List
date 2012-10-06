@@ -14,8 +14,12 @@
 		barColor: '#85644b',
 		barImage: 'img/menubar.png',
 		tabBarHidden: true,
-		backgroundImage: '/img/full-bg.png'
+		backgroundColor: 'white'
 	});
+	
+	if(Ti.App.Properties.getBool('mcStyledUI', true)) {
+		win_list.setBackgroundImage('/img/full-bg.png');
+	}
 
 	var tab1 = Ti.UI.createTab({
 		window: win_list
