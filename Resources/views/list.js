@@ -113,8 +113,10 @@ var b_info_win = Ti.UI.createButton({
 
 b_info_win.addEventListener('click', function(e) {
 	var win_info = Ti.UI.createWindow({
-		title: 'Credits',
-		url: 'credits.js'
+		url: 'credits.js',
+		title: I('credits.title'),
+		barImage: '/img/menubar.png',
+		backgroundImage: '/img/full-bg.png'
 	});
 
 	win_info.open({
