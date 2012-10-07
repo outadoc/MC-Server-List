@@ -27,32 +27,36 @@ function updateList() {
 	//this index corresponds to the tableviewrow id
 	var i = 0;
 
-	//loop through the servers
-	while(servers.isValidRow()) {
-		//getting all the data corresponding to the row, it will be useful later
-		var data = {
-			name: servers.fieldByName('name'),
-			host: servers.fieldByName('host'),
-			port: servers.fieldByName('port'),
-			sqlid: servers.fieldByName('id'),
-			id: i
-		};
+	if(servers.rowCount < 1) {
+		tableView.appendRow(ServerHandler.getEmptyPlaceholderRow());
+	} else {
+		//loop through the servers
+		while(servers.isValidRow()) {
+			//getting all the data corresponding to the row, it will be useful later
+			var data = {
+				name: servers.fieldByName('name'),
+				host: servers.fieldByName('host'),
+				port: servers.fieldByName('port'),
+				sqlid: servers.fieldByName('id'),
+				id: i
+			};
 
-		//create temporary row, that will say "polling server..."
-		ServerHandler.getRow(data, i, function(e) {
-			tableView.appendRow(e.row);
-		}, ServerHandler.state.POLLING);
+			//create temporary row, that will say "polling server..."
+			ServerHandler.getRow(data, i, function(e) {
+				tableView.appendRow(e.row);
+			}, ServerHandler.state.POLLING);
 
-		//get real info
-		ServerHandler.getServerInfo(data, i, function(e) {
-			e.row.data = e.data;
-			//update the existing temporary row and update it in consequence
-			tableView.updateRow(e.index, e.row);
-		});
+			//get real info
+			ServerHandler.getServerInfo(data, i, function(e) {
+				e.row.data = e.data;
+				//update the existing temporary row and update it in consequence
+				tableView.updateRow(e.index, e.row);
+			});
 
-		//next server, next row
-		servers.next();
-		i++;
+			//next server, next row
+			servers.next();
+			i++;
+		}
 	}
 
 	//we're done with the database
