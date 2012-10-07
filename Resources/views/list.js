@@ -107,9 +107,17 @@ var b_done = Ti.UI.createButton({
 	backgroundImage: '/img/menubar-button.png'
 });
 
+var b_info = Ti.UI.createButton({
+	image: '/img/info.png',
+	backgroundImage: '/img/menubar-button.png'
+});
+
 b_edit.addEventListener('click', function(e) {
 	tableView.setEditing(true);
 	win.setLeftNavButton(b_done, {
+		animated: true
+	});
+	win.setRightNavButton(b_add, {
 		animated: true
 	});
 });
@@ -119,25 +127,12 @@ b_done.addEventListener('click', function(e) {
 	win.setLeftNavButton(b_edit, {
 		animated: true
 	});
+	win.setRightNavButton(b_info, {
+		animated: true
+	});
 });
 
-win.setRightNavButton(b_add);
-win.setLeftNavButton(b_edit);
-
-var view_ad = Ti.UI.iOS.createAdView({
-	adSize: Ti.UI.iOS.AD_SIZE_PORTRAIT,
-	bottom: 0
-});
-
-win.add(view_ad);
-
-var b_info_win = Ti.UI.createButton({
-	style: (isMcStyle) ? Ti.UI.iPhone.SystemButton.INFO_LIGHT : Ti.UI.iPhone.SystemButton.INFO_DARK,
-	bottom: 12,
-	right: 10
-});
-
-b_info_win.addEventListener('click', function(e) {
+b_info.addEventListener('click', function(e) {
 	var win_info = Ti.UI.createWindow({
 		url: 'credits.js',
 		title: I('credits.title'),
@@ -150,5 +145,13 @@ b_info_win.addEventListener('click', function(e) {
 	});
 });
 
-win.add(b_info_win);
+win.setRightNavButton(b_info);
+win.setLeftNavButton(b_edit);
+
+var view_ad = Ti.UI.iOS.createAdView({
+	adSize: Ti.UI.iOS.AD_SIZE_PORTRAIT,
+	bottom: 0
+});
+
+win.add(view_ad);
 updateList();
