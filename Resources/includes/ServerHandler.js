@@ -211,6 +211,7 @@ exports.getRow = function(data, index, callback, state) {
 	});
 }
 
+//when there are no rows in the database, add some info on how to add a server
 exports.getEmptyPlaceholderRow = function() {
 	var row = Ti.UI.createTableViewRow({
 		editable: false,
