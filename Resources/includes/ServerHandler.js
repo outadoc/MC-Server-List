@@ -12,16 +12,15 @@ exports.init = function(name, host, port) {
 		exports.data.port = 25565;
 	}
 }
-
 //called when we want to poll the server and get its info
 exports.getServerInfo = function(data, index, callback) {
 	//make sur the port is not empty, and it's 25565 by default
 	data.port = (data.port == null) ? 25565 : data.port;
-	
+
 	//this will help us calculate the ping afterwards
 	var timestamp = (new Date).getTime();
 	var ping = 0;
-	
+
 	//the socket used to communicate with the server
 	var socket = Ti.Network.Socket.createTCP({
 		host: data.host,
@@ -45,7 +44,7 @@ exports.getServerInfo = function(data, index, callback) {
 			exports.getRow(data, index, callback, exports.state.ERROR);
 		}
 	});
-	
+
 	//when we get something from the server
 	function readCallback(e) {
 		try {
@@ -54,7 +53,7 @@ exports.getServerInfo = function(data, index, callback) {
 				//if the server sent us a 0xFF
 				if(e.buffer[0] == 0xFF) {
 					e.source.close();
-					
+
 					//result is the raw string of info the server gives us
 					var result = Ti.Codec.decodeString({
 						source: e.buffer,
@@ -62,16 +61,16 @@ exports.getServerInfo = function(data, index, callback) {
 						length: e.buffer.length - 3,
 						charset: Ti.Codec.CHARSET_UTF16BE
 					});
-					
+
 					//parse this info string into an array
 					var infoArray = result.split('§');
-					
+
 					//insert the info we got into the data object
 					data.desc = infoArray[0];
 					data.disp = infoArray[1];
 					data.max = infoArray[2];
 					data.ping = ping;
-					
+
 					//send this data to the getRow method so it can make a row out of it
 					exports.getRow(data, index, callback, exports.state.SUCCESS);
 				}
@@ -84,11 +83,10 @@ exports.getServerInfo = function(data, index, callback) {
 			exports.getRow(data, index, callback, exports.state.ERROR);
 		}
 	}
-	
+
 	//begin connection to the server!
 	socket.connect();
 }
-
 //this method takes the info we got from the server (or not, if it's a temporary row) and turns it into a fancy tableviewrow
 exports.getRow = function(data, index, callback, state) {
 	//first, create the row
@@ -96,7 +94,7 @@ exports.getRow = function(data, index, callback, state) {
 		height: 75,
 		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
-	
+
 	//note: the (exports.isMcStyle) condition checks if the user wants a GUI that looks like the original Minecraft server list
 
 	//name of the server
@@ -110,7 +108,7 @@ exports.getRow = function(data, index, callback, state) {
 	});
 
 	row.add(lbl_name);
-	
+
 	//ping of the server
 	var lbl_ping = Ti.UI.createLabel({
 		text: (state == exports.state.ERROR) ? '0 ms' : data.ping + ' ms',
@@ -149,7 +147,7 @@ exports.getRow = function(data, index, callback, state) {
 	});
 
 	row.add(lbl_slots);
-	
+
 	//ip address of the server
 	var lbl_host = Ti.UI.createLabel({
 		text: data.host,
@@ -162,7 +160,7 @@ exports.getRow = function(data, index, callback, state) {
 	});
 
 	row.add(lbl_host);
-	
+
 	//fix the labels depending on the state
 	if(state == exports.state.ERROR) {
 		//if something went wrong, show an error message instead of the description
@@ -175,7 +173,7 @@ exports.getRow = function(data, index, callback, state) {
 		lbl_slots.setVisible(false);
 		//show a spinning wheel to indicate it's trying to fetch information from the server
 		var indicator = Ti.UI.createActivityIndicator({
-			right:10,
+			right: 10,
 			style: Ti.UI.iPhone.ActivityIndicatorStyle.PLAIN
 		});
 		row.add(indicator);
@@ -184,12 +182,12 @@ exports.getRow = function(data, index, callback, state) {
 		//if everything worked out, set the description to its legitimate value
 		lbl_desc.setText(data.desc);
 	}
-	
+
 	if(exports.isMcStyle) {
 		//if we want a minecraft tiled background, do eet
 		row.setBackgroundColor('transparent');
 	}
-	
+
 	//setting the right colors following the state
 	if(state == exports.state.ERROR) {
 		//if it's an error, make it bloody
@@ -210,7 +208,6 @@ exports.getRow = function(data, index, callback, state) {
 		data: data
 	});
 }
-
 //when there are no rows in the database, add some info on how to add a server
 exports.getEmptyPlaceholderRow = function() {
 	var row = Ti.UI.createTableViewRow({
@@ -220,7 +217,7 @@ exports.getEmptyPlaceholderRow = function() {
 		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
 		backgroundColor: 'transparent'
 	});
-	
+
 	var lbl_title = Ti.UI.createLabel({
 		text: I('main.noContent.title'),
 		font: {
@@ -234,9 +231,9 @@ exports.getEmptyPlaceholderRow = function() {
 		width: Ti.UI.SIZE,
 		height: Ti.UI.SIZE
 	});
-		
+
 	row.add(lbl_title);
-		
+
 	var lbl_help = Ti.UI.createLabel({
 		text: I('main.noContent.help'),
 		top: 38,
@@ -250,14 +247,13 @@ exports.getEmptyPlaceholderRow = function() {
 		height: Ti.UI.SIZE,
 		width: Ti.UI.FILL
 	});
-	
+
 	row.add(lbl_help);
 	return row;
 }
-
 //definition of the states
 exports.state = {
 	POLLING: 0, //when fetching info from the server
-	ERROR: 1,   //when something wrong happened
-	SUCCESS: 2  //when everything rules
+	ERROR: 1, //when something wrong happened
+	SUCCESS: 2 //when everything rules
 }

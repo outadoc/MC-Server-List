@@ -3,7 +3,7 @@
 	db.execute('CREATE TABLE IF NOT EXISTS servers (id INTEGER PRIMARY KEY, name VARCHAR(16) NOT NULL, host VARCHAR(32) NOT NULL, port INTEGER DEFAULT 25565)');
 	db.file.setRemoteBackup(true);
 	db.close();
-	
+
 	Ti.include('/includes/lib/json.i18n.js');
 
 	var tabgroup = Ti.UI.createTabGroup();
@@ -16,7 +16,7 @@
 		tabBarHidden: true,
 		backgroundColor: 'white'
 	});
-	
+
 	if(Ti.App.Properties.getBool('mcStyledUI', true)) {
 		win_list.setBackgroundImage('/img/full-bg.png');
 	}

@@ -86,27 +86,27 @@ var b_done = Ti.UI.createButton({
 b_done.addEventListener('click', function(e) {
 	if(txtfield_name.getValue() == '' || txtfield_host.getValue() == '') {
 		(Ti.UI.createAlertDialog({
-			title: I('addServer.confirm.error.title'),
-			message: I('addServer.confirm.error.message')
-		})).show();
+				title: I('addServer.confirm.error.title'),
+				message: I('addServer.confirm.error.message')
+			})).show();
 	} else {
 		var db = Ti.Database.open('servers');
 		db.execute('INSERT INTO servers (name, host, port) VALUES(?, ?, ?)', txtfield_name.getValue(), txtfield_host.getValue(), (txtfield_port.getValue() == '') ? 25565 : txtfield_port.getValue());
 		db.close();
-		
+
 		(Ti.UI.createAlertDialog({
-			title: I('addServer.confirm.success.title'),
-			message: I('addServer.confirm.success.message'),
-			buttonNames: [I('addServer.confirm.success.okButton')]
-		})).show();
-		
+				title: I('addServer.confirm.success.title'),
+				message: I('addServer.confirm.success.message'),
+				buttonNames: [I('addServer.confirm.success.okButton')]
+			})).show();
+
 		win.close();
 	}
 });
 
 win.setRightNavButton(b_done);
 
-win.addEventListener('postlayout', function(){
+win.addEventListener('postlayout', function() {
 	txtfield_name.addEventListener('return', function(e) {
 		txtfield_host.focus();
 	});
