@@ -10,6 +10,10 @@
 		"item": {
 			"error": "Can't reach server",
 			"polling": "Polling server..."
+		},
+		"noContent": {
+			"title": "No server has been added yet.",
+			"help": "To add a server, tap \"+\"."
 		}
 	},
 	"addServer": {

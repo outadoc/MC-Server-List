@@ -10,6 +10,10 @@
 		"item": {
 			"error": "Serveur injoignable",
 			"polling": "Interrogation du serveur..."
+		},
+		"noContent": {
+			"title": "Aucun serveur n'a encore été ajouté.",
+			"help": "Pour ajouter un serveur, tapez \"+\"."
 		}
 	},
 	"addServer": {
