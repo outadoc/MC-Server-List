@@ -24,7 +24,6 @@ function updateList() {
 	var servers = db.execute('SELECT * FROM servers');
 	//erase the existing tableview entries
 	tableView.setData([]);
-	tableView.setEditing(false);
 	//this index corresponds to the tableviewrow id
 	var i = 0;
 
@@ -90,6 +89,7 @@ b_add.addEventListener('click', function(e) {
 	});
 
 	win_add.addEventListener('close', function(e) {
+		b_done.fireEvent('click', null);
 		updateList();
 	});
 
