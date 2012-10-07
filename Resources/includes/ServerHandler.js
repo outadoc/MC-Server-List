@@ -215,7 +215,9 @@ exports.getEmptyPlaceholderRow = function() {
 	var row = Ti.UI.createTableViewRow({
 		editable: false,
 		isPlaceholder: true,
-		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.GRAY
+		height: 75,
+		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+		backgroundColor: 'transparent'
 	});
 	
 	var lbl_title = Ti.UI.createLabel({
@@ -224,6 +226,7 @@ exports.getEmptyPlaceholderRow = function() {
 			fontWeight: 'bold',
 			fontSize: 17
 		},
+		color: (exports.isMcStyle) ? 'white' : 'black',
 		top: 7,
 		left: 10,
 		right: 10,
@@ -242,6 +245,7 @@ exports.getEmptyPlaceholderRow = function() {
 		font: {
 			fontSize: 15
 		},
+		color: (exports.isMcStyle) ? 'gray' : 'lightgray',
 		height: Ti.UI.SIZE,
 		width: Ti.UI.FILL
 	});
