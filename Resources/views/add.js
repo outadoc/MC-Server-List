@@ -27,7 +27,8 @@ var txtfield_name = Ti.UI.createTextField({
 	left: 20,
 	right: 20,
 	top: 50,
-	height: 38
+	height: 38,
+	returnKeyType: Ti.UI.RETURNKEY_NEXT
 });
 
 win.add(txtfield_name);
@@ -50,7 +51,8 @@ var txtfield_host = Ti.UI.createTextField({
 	left: 20,
 	right: 130,
 	top: 130,
-	height: 38
+	height: 38,
+	returnKeyType: Ti.UI.RETURNKEY_NEXT
 });
 
 win.add(txtfield_host);
@@ -105,5 +107,12 @@ b_done.addEventListener('click', function(e) {
 win.setRightNavButton(b_done);
 
 win.addEventListener('postlayout', function(){
+	txtfield_name.addEventListener('return', function(e) {
+		txtfield_host.focus();
+	});
+	txtfield_host.addEventListener('return', function(e) {
+		txtfield_port.focus();
+	});
+
 	txtfield_name.focus();
 });
