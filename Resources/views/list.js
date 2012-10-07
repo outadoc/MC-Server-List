@@ -24,6 +24,7 @@ function updateList() {
 	var servers = db.execute('SELECT * FROM servers');
 	//erase the existing tableview entries
 	tableView.setData([]);
+	tableView.setEditing(false);
 	//this index corresponds to the tableviewrow id
 	var i = 0;
 
