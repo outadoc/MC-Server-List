@@ -103,3 +103,7 @@ b_done.addEventListener('click', function(e) {
 });
 
 win.setRightNavButton(b_done);
+
+win.addEventListener('postlayout', function(){
+	txtfield_name.focus();
+});
