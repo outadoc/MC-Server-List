@@ -94,12 +94,23 @@ var b_edit = Ti.UI.createButton({
 	backgroundImage: '/img/menubar-button.png'
 });
 
+var b_done = Ti.UI.createButton({
+	image: '/img/check.png',
+	backgroundImage: '/img/menubar-button.png'
+});
+
 b_edit.addEventListener('click', function(e) {
-	if(!tableView.getEditing()) {
-		tableView.setEditing(true);
-	} else {
-		tableView.setEditing(false);
-	}
+	tableView.setEditing(true);
+	win.setLeftNavButton(b_done, {
+		animated: true
+	});
+});
+
+b_done.addEventListener('click', function(e) {
+	tableView.setEditing(false);
+	win.setLeftNavButton(b_edit, {
+		animated: true
+	});
 });
 
 win.setRightNavButton(b_add);
@@ -114,7 +125,7 @@ win.add(view_ad);
 
 var b_info_win = Ti.UI.createButton({
 	style: (isMcStyle) ? Ti.UI.iPhone.SystemButton.INFO_LIGHT : Ti.UI.iPhone.SystemButton.INFO_DARK,
-	bottom: 10,
+	bottom: 12,
 	right: 10
 });
 
