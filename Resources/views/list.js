@@ -105,6 +105,13 @@ b_edit.addEventListener('click', function(e) {
 win.setRightNavButton(b_add);
 win.setLeftNavButton(b_edit);
 
+var view_ad = Ti.UI.iOS.createAdView({
+	adSize: Ti.UI.iOS.AD_SIZE_PORTRAIT,
+	bottom: 0
+});
+
+win.add(view_ad);
+
 var b_info_win = Ti.UI.createButton({
 	style: (isMcStyle) ? Ti.UI.iPhone.SystemButton.INFO_LIGHT : Ti.UI.iPhone.SystemButton.INFO_DARK,
 	bottom: 10,
