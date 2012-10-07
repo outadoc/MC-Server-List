@@ -225,7 +225,7 @@ exports.getEmptyPlaceholderRow = function() {
 			fontSize: 17
 		},
 		color: (exports.isMcStyle) ? 'white' : 'black',
-		top: 12,
+		top: 5,
 		left: 10,
 		right: 10,
 		width: Ti.UI.SIZE,
@@ -236,8 +236,8 @@ exports.getEmptyPlaceholderRow = function() {
 
 	var lbl_help = Ti.UI.createLabel({
 		text: I('main.noContent.help'),
-		top: 38,
-		bottom: 10,
+		top: 29,
+		bottom: 8,
 		left: 10,
 		right: 10,
 		font: {

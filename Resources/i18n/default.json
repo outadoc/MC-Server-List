@@ -13,7 +13,7 @@
 		},
 		"noContent": {
 			"title": "No server has been added yet.",
-			"help": "To add a server, tap the edit button, then \"+\"."
+			"help": "To add a server, tap the edit button, then tap \"+\"."
 		}
 	},
 	"addServer": {
