@@ -91,9 +91,18 @@ exports.getServerInfo = function(data, index, callback) {
 exports.getRow = function(data, index, callback, state) {
 	//first, create the row
 	var row = Ti.UI.createTableViewRow({
-		height: 75,
+		height: Ti.UI.SIZE,
 		selectionStyle: Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
+	
+	var view_container_info = Ti.UI.createView({
+		layout: 'vertical',
+		height: Ti.UI.SIZE,
+		top: 5,
+		bottom: 5
+	});
+	
+	row.add(view_container_info);
 
 	//note: the (exports.isMcStyle) condition checks if the user wants a GUI that looks like the original Minecraft server list
 
@@ -101,13 +110,12 @@ exports.getRow = function(data, index, callback, state) {
 	var lbl_name = Ti.UI.createLabel({
 		text: data.name,
 		color: (exports.isMcStyle) ? 'white' : 'black',
-		top: 5,
 		left: 10,
 		width: 250,
 		height: 19
 	});
 
-	row.add(lbl_name);
+	view_container_info.add(lbl_name);
 
 	//ping of the server
 	var lbl_ping = Ti.UI.createLabel({
@@ -127,13 +135,12 @@ exports.getRow = function(data, index, callback, state) {
 		font: {
 			fontSize: 16
 		},
-		height: 17,
+		height: Ti.UI.SIZE,
 		width: 250,
-		top: 26,
 		left: 10
 	});
 
-	row.add(lbl_desc);
+	view_container_info.add(lbl_desc);
 
 	//number of slots available
 	var lbl_slots = Ti.UI.createLabel({
@@ -155,11 +162,10 @@ exports.getRow = function(data, index, callback, state) {
 		font: {
 			fontSize: 16
 		},
-		bottom: 10,
 		left: 10
 	});
 
-	row.add(lbl_host);
+	view_container_info.add(lbl_host);
 
 	//fix the labels depending on the state
 	if(state == exports.state.ERROR) {
