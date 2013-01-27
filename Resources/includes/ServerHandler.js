@@ -150,7 +150,7 @@ exports.getRow = function(data, index, callback, state) {
 
 	//ip address of the server
 	var lbl_host = Ti.UI.createLabel({
-		text: data.host,
+		text: (data.port == 25565) ? data.host : (data.host + ':' + data.port),
 		color: (exports.isMcStyle) ? '#4b4b4b' : 'lightGray',
 		font: {
 			fontSize: 16
