@@ -63,12 +63,12 @@ exports.getServerInfo = function(data, index, callback) {
 					});
 
 					//parse this info string into an array
-					var infoArray = result.split('§');
-
+					var infoArray = result.match(/(.*)§([0-9]*)§([0-9]*)$/);
+					
 					//insert the info we got into the data object
-					data.desc = infoArray[0];
-					data.disp = infoArray[1];
-					data.max = infoArray[2];
+					data.desc = infoArray[1].replace(/§[0-9a-zA-Z]/g, '');
+					data.disp = infoArray[2];
+					data.max = infoArray[3];
 					data.ping = ping;
 
 					//send this data to the getRow method so it can make a row out of it
