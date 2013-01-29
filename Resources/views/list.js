@@ -80,7 +80,7 @@ tableView.addEventListener('delete', function(e) {
 function rowClickHandler(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
-		title: 'Edit server',
+		title: I('addServer.titleEdit'),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png',
 		serverIDToEdit: e.rowData.data.sqlid

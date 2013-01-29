@@ -18,6 +18,7 @@
 	},
 	"addServer": {
 		"title": "Ajouter un serveur",
+		"titleEdit": "Modifier un serveur",
 		"labels": {
 			"name": {
 				"title": "Nom du serveur :",
