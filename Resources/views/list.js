@@ -78,6 +78,7 @@ tableView.addEventListener('delete', function(e) {
 });
 
 function rowClickHandler(e) {
+	//if we click on a row, we want to edit it
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
 		title: I('addServer.titleEdit'),
@@ -102,6 +103,7 @@ var b_add = Ti.UI.createButton({
 });
 
 b_add.addEventListener('click', function(e) {
+	//open the server creation window
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
 		title: I('addServer.title'),
