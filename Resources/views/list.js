@@ -16,6 +16,13 @@ if(isMcStyle) {
 	tableView.setBackgroundImage('/img/full-bg.png');
 }
 
+var view_footer = Ti.UI.createView({
+	left: 0,
+	right: 0,
+	height: 55
+});
+
+tableView.setFooterView(view_footer);
 win.add(tableView);
 
 function updateList() {
@@ -40,25 +47,25 @@ function updateList() {
 				sqlid: servers.fieldByName('id'),
 				id: i
 			};
-			
+
 			try {
 				//create temporary row, that will say "polling server..."
 				ServerHandler.getRow(data, i, function(e) {
 					tableView.appendRow(e.row);
 				}, ServerHandler.state.POLLING);
-	
+
 				//get real info
 				ServerHandler.getServerInfo(data, i, function(e) {
 					e.row.data = e.data;
 					e.row.addEventListener('click', rowClickHandler);
-					
+
 					//update the existing temporary row and update it in consequence
 					tableView.updateRow(e.index, e.row);
 				});
 			} catch(e) {
 				alert("Uh oh, I think something went terribly wrong. :(\nI'm working on this issue, but for now you can restart the app.");
 			}
-			
+
 			//next server, next row
 			servers.next();
 			i++;
