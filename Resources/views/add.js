@@ -90,21 +90,41 @@ b_done.addEventListener('click', function(e) {
 				message: I('addServer.confirm.error.message')
 			})).show();
 	} else {
-		var db = Ti.Database.open('servers');
-		db.execute('INSERT INTO servers (name, host, port) VALUES(?, ?, ?)', txtfield_name.getValue(), txtfield_host.getValue(), (txtfield_port.getValue() == '') ? 25565 : txtfield_port.getValue());
-		db.close();
-
-		(Ti.UI.createAlertDialog({
-				title: I('addServer.confirm.success.title'),
-				message: I('addServer.confirm.success.message'),
-				buttonNames: [I('addServer.confirm.success.okButton')]
-			})).show();
-
+		if(win.serverIDToEdit != null) {
+			var db = Ti.Database.open('servers');
+			db.execute('UPDATE servers SET name=?, host=?, port=? WHERE id=?', txtfield_name.getValue(), txtfield_host.getValue(), (txtfield_port.getValue() == '') ? 25565 : txtfield_port.getValue(), win.serverIDToEdit);
+			db.close();
+		} else {
+			var db = Ti.Database.open('servers');
+			db.execute('INSERT INTO servers (name, host, port) VALUES(?, ?, ?)', txtfield_name.getValue(), txtfield_host.getValue(), (txtfield_port.getValue() == '') ? 25565 : txtfield_port.getValue());
+			db.close();
+	
+			(Ti.UI.createAlertDialog({
+					title: I('addServer.confirm.success.title'),
+					message: I('addServer.confirm.success.message'),
+					buttonNames: [I('addServer.confirm.success.okButton')]
+				})).show();
+		}
+		
 		win.close();
 	}
 });
 
 win.setRightNavButton(b_done);
+
+//if we're editing a server and not actually creating a new one
+if(win.serverIDToEdit != null) {
+	var db = Ti.Database.open('servers');
+	var servers = db.execute('SELECT * FROM servers WHERE id=?', win.serverIDToEdit);
+	
+	if(servers.rowCount != 0) {
+		txtfield_name.setValue(servers.fieldByName('name'));
+		txtfield_host.setValue(servers.fieldByName('host'));
+		txtfield_port.setValue(servers.fieldByName('port'));
+	}
+	
+	db.close();
+}
 
 win.addEventListener('postlayout', function() {
 	txtfield_name.addEventListener('return', function(e) {

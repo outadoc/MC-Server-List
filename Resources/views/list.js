@@ -50,6 +50,8 @@ function updateList() {
 				//get real info
 				ServerHandler.getServerInfo(data, i, function(e) {
 					e.row.data = e.data;
+					e.row.addEventListener('click', rowClickHandler);
+					
 					//update the existing temporary row and update it in consequence
 					tableView.updateRow(e.index, e.row);
 				});
@@ -74,6 +76,25 @@ tableView.addEventListener('delete', function(e) {
 	db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.sqlid);
 	db.close();
 });
+
+function rowClickHandler(e) {
+	var win_add = Ti.UI.createWindow({
+		url: 'add.js',
+		title: 'Edit server',
+		barImage: '/img/menubar.png',
+		backgroundImage: '/img/full-bg.png',
+		serverIDToEdit: e.rowData.data.sqlid
+	});
+
+	win_add.addEventListener('close', function(e) {
+		b_done.fireEvent('click', null);
+		updateList();
+	});
+
+	win_add.open({
+		modal: true
+	});
+}
 
 var b_add = Ti.UI.createButton({
 	image: '/img/add.png',
