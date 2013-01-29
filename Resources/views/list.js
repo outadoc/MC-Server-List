@@ -79,7 +79,7 @@ tableView.addEventListener('delete', function(e) {
 
 function rowClickHandler(e) {
 	var win_add = Ti.UI.createWindow({
-		url: 'add.js',
+		url: 'server-info.js',
 		title: 'Edit server',
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png',
@@ -103,7 +103,7 @@ var b_add = Ti.UI.createButton({
 
 b_add.addEventListener('click', function(e) {
 	var win_add = Ti.UI.createWindow({
-		url: 'add.js',
+		url: 'server-info.js',
 		title: I('addServer.title'),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png'
