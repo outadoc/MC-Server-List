@@ -2,7 +2,8 @@ var win = Ti.UI.currentWindow;
 Ti.include('/includes/lib/json.i18n.js');
 
 var b_close = Ti.UI.createButton({
-	systemButton: Ti.UI.iPhone.SystemButton.DONE
+	title: I('buttons.close'),
+	style: Ti.UI.iPhone.SystemButtonStyle.DONE
 });
 
 b_close.addEventListener('click', function(e) {

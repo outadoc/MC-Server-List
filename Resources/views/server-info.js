@@ -2,7 +2,7 @@ var win = Ti.UI.currentWindow;
 Ti.include('/includes/lib/json.i18n.js');
 
 var b_close = Ti.UI.createButton({
-	systemButton: Ti.UI.iPhone.SystemButton.CANCEL
+	title: I('buttons.cancel')
 });
 
 b_close.addEventListener('click', function(e) {
@@ -78,7 +78,8 @@ var txtfield_port = Ti.UI.createTextField({
 win.add(txtfield_port);
 
 var b_done = Ti.UI.createButton({
-	systemButton: Ti.UI.iPhone.SystemButton.DONE
+	title: I('buttons.done'),
+	style: Ti.UI.iPhone.SystemButtonStyle.DONE
 });
 
 b_done.addEventListener('click', function(e) {

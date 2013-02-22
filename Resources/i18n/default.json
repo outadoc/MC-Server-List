@@ -48,5 +48,10 @@
 		"title": "Credits",
 		"developer": "Developer: ",
 		"platform": "Platform: "
+	},
+	"buttons": {
+		"done": "Done",
+		"close": "Close",
+		"cancel": "Cancel"
 	}
 }
