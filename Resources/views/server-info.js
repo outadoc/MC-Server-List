@@ -2,8 +2,7 @@ var win = Ti.UI.currentWindow;
 Ti.include('/includes/lib/json.i18n.js');
 
 var b_close = Ti.UI.createButton({
-	backgroundImage: '/img/menubar-button.png',
-	image: '/img/back.png'
+	systemButton: Ti.UI.iPhone.SystemButton.CANCEL
 });
 
 b_close.addEventListener('click', function(e) {
@@ -79,8 +78,7 @@ var txtfield_port = Ti.UI.createTextField({
 win.add(txtfield_port);
 
 var b_done = Ti.UI.createButton({
-	image: '/img/check.png',
-	backgroundImage: '/img/menubar-button.png'
+	systemButton: Ti.UI.iPhone.SystemButton.DONE
 });
 
 b_done.addEventListener('click', function(e) {

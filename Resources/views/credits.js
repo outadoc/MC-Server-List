@@ -2,8 +2,7 @@ var win = Ti.UI.currentWindow;
 Ti.include('/includes/lib/json.i18n.js');
 
 var b_close = Ti.UI.createButton({
-	backgroundImage: '/img/menubar-button.png',
-	image: '/img/back.png'
+	systemButton: Ti.UI.iPhone.SystemButton.DONE
 });
 
 b_close.addEventListener('click', function(e) {

@@ -4,6 +4,7 @@ var ServerHandler = require('/includes/ServerHandler');
 Ti.include('/includes/lib/json.i18n.js');
 
 var isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
+var defaultBarColor = '#806854';
 
 var tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,
@@ -89,13 +90,13 @@ function rowClickHandler(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
 		title: I('addServer.titleEdit'),
+		barColor: defaultBarColor,
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png',
 		serverIDToEdit: e.rowData.data.sqlid
 	});
 
 	win_add.addEventListener('close', function(e) {
-		b_done.fireEvent('click', null);
 		updateList();
 	});
 
@@ -105,8 +106,7 @@ function rowClickHandler(e) {
 }
 
 var b_add = Ti.UI.createButton({
-	image: '/img/add.png',
-	backgroundImage: '/img/menubar-button.png'
+	systemButton: Ti.UI.iPhone.SystemButton.ADD
 });
 
 b_add.addEventListener('click', function(e) {
@@ -114,12 +114,12 @@ b_add.addEventListener('click', function(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
 		title: I('addServer.title'),
+		barColor: defaultBarColor,
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png'
 	});
 
 	win_add.addEventListener('close', function(e) {
-		b_done.fireEvent('click', null);
 		updateList();
 	});
 
@@ -128,45 +128,19 @@ b_add.addEventListener('click', function(e) {
 	});
 });
 
-var b_edit = Ti.UI.createButton({
-	image: '/img/edit.png',
-	backgroundImage: '/img/menubar-button.png'
-});
-
-var b_done = Ti.UI.createButton({
-	image: '/img/check.png',
-	backgroundImage: '/img/menubar-button.png'
-});
-
 var b_info = Ti.UI.createButton({
-	image: '/img/info.png',
-	backgroundImage: '/img/menubar-button.png'
+	style: Ti.UI.iPhone.SystemButton.INFO_LIGHT,
+	left: 10
 });
 
-b_edit.addEventListener('click', function(e) {
-	tableView.setEditing(true);
-	win.setLeftNavButton(b_done, {
-		animated: true
-	});
-	win.setRightNavButton(b_add, {
-		animated: true
-	});
-});
-
-b_done.addEventListener('click', function(e) {
-	tableView.setEditing(false);
-	win.setLeftNavButton(b_edit, {
-		animated: true
-	});
-	win.setRightNavButton(b_info, {
-		animated: true
-	});
-});
+var view_info = Ti.UI.createView();
+view_info.add(b_info);
 
 b_info.addEventListener('click', function(e) {
 	var win_info = Ti.UI.createWindow({
 		url: 'credits.js',
 		title: I('credits.title'),
+		barColor: defaultBarColor,
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png'
 	});
@@ -176,8 +150,8 @@ b_info.addEventListener('click', function(e) {
 	});
 });
 
-win.setRightNavButton(b_info);
-win.setLeftNavButton(b_edit);
+win.setRightNavButton(b_add);
+win.setLeftNavButton(view_info);
 
 var view_ad = Ti.UI.iOS.createAdView({
 	adSize: Ti.UI.iOS.AD_SIZE_PORTRAIT,
