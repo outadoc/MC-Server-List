@@ -30,6 +30,7 @@ exports.getServerInfo = function(data, index, callback) {
 		connected: function(e) {
 			//this will catch any info the server throws us
 			Ti.Stream.pump(e.socket, readCallback, 256, true);
+			
 			//send him a 0xFE
 			Ti.Stream.write(e.socket, Ti.createBuffer({
 				value: 0xFE,
@@ -39,6 +40,47 @@ exports.getServerInfo = function(data, index, callback) {
 				//calculate the ping
 				ping = (new Date).getTime() - timestamp;
 			});
+			
+			/*var mainBuffer = Ti.createBuffer({
+				value: 0xFA,
+				byteOrder: Ti.Codec.BIG_ENDIAN,
+				type: Ti.Codec.TYPE_BYTE
+			});
+			
+			mainBuffer.append(Ti.createBuffer({
+				value: "MC|PingHost",
+				byteOrder: Ti.Codec.BIG_ENDIAN,
+				type: Ti.Codec.CHARSET_UTF16BE
+			}));
+			
+			var pluginMessageData = Ti.createBuffer({
+				value: 74,
+				byteOrder: Ti.Codec.BIG_ENDIAN,
+				type: Ti.Codec.TYPE_BYTE
+			});
+			
+			pluginMessageData.append(Ti.createBuffer({
+				value: data.host,
+				byteOrder: Ti.Codec.BIG_ENDIAN,
+				type: Ti.Codec.CHARSET_UTF16BE
+			}));
+			
+			pluginMessageData.append(Ti.createBuffer({
+				value: data.port,
+				byteOrder: Ti.Codec.BIG_ENDIAN,
+				type: Ti.Codec.TYPE_INT
+			}));
+			
+			mainBuffer.append(Ti.createBuffer({
+				value: pluginMessageData.length,
+				byteOrder: Ti.Codec.BIG_ENDIAN,
+				type: Ti.Codec.TYPE_SHORT
+			}));
+			
+			mainBuffer.append(pluginMessageData);
+			Ti.Stream.write(e.socket, mainBuffer, function() {
+				
+			});*/
 		},
 		error: function(e) {
 			exports.getRow(data, index, callback, exports.state.ERROR);
@@ -61,7 +103,7 @@ exports.getServerInfo = function(data, index, callback) {
 						length: e.buffer.length - 3,
 						charset: Ti.Codec.CHARSET_UTF16BE
 					});
-
+					
 					//parse this info string into an array
 					var infoArray = result.match(/(.*)§([0-9]*)§([0-9]*)$/);
 					
