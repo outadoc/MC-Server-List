@@ -69,6 +69,7 @@ var txtfield_port = Ti.UI.createTextField({
 	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
 	borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 	hintText: '25565',
+	value: '25565',
 	right: 20,
 	left: 200,
 	top: 130,
