@@ -17,13 +17,6 @@ if(isMcStyle) {
 	tableView.setBackgroundImage('/img/full-bg.png');
 }
 
-var view_footer = Ti.UI.createView({
-	left: 0,
-	right: 0,
-	height: 55
-});
-
-tableView.setFooterView(view_footer);
 win.add(tableView);
 
 function updateList() {
@@ -153,10 +146,31 @@ b_info.addEventListener('click', function(e) {
 win.setRightNavButton(b_add);
 win.setLeftNavButton(view_info);
 
-var view_ad = Ti.UI.iOS.createAdView({
+var adView = Ti.UI.iOS.createAdView({
 	adSize: Ti.UI.iOS.AD_SIZE_PORTRAIT,
-	bottom: 0
+	height: Ti.UI.SIZE,
+	width: Ti.UI.FILL,
+	bottom: 0,
+	backgroundColor: 'transparent'
 });
 
-win.add(view_ad);
+adView.addEventListener('load', function(e) {
+	if(tableView != null) {
+		tableView.animate({
+			bottom: 50,
+			duration: 200
+		});
+	}
+});
+
+adView.addEventListener('error', function(e) {
+	if(tableView != null) {
+		tableView.animate({
+			bottom: 0,
+			duration: 200
+		});
+	}
+});
+
+win.add(adView);
 updateList();
