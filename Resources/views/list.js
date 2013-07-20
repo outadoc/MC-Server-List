@@ -73,9 +73,11 @@ function updateList() {
 Ti.App.addEventListener('reload', updateList);
 
 tableView.addEventListener('delete', function(e) {
-	var db = Ti.Database.open('servers');
-	db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.sqlid);
-	db.close();
+	if(e.rowData.data.sqlid !== undefined) {
+		var db = Ti.Database.open('servers');
+		db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.sqlid);
+		db.close();
+	}
 });
 
 function rowClickHandler(e) {
