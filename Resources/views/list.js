@@ -141,7 +141,8 @@ b_info.addEventListener('click', function(e) {
 	});
 
 	win_info.open({
-		modal: true
+		modal: true,
+		modalTransitionStyle: Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL
 	});
 });
 

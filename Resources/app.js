@@ -5,7 +5,9 @@
 	db.close();
 
 	Ti.include('/includes/lib/json.i18n.js');
-
+	
+	Titanium.UI.setBackgroundColor('#1F150D');
+	
 	var tabgroup = Ti.UI.createTabGroup();
 
 	var win_list = Ti.UI.createWindow({
