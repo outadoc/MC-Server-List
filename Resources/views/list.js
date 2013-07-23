@@ -57,7 +57,7 @@ function updateList() {
 					tableView.updateRow(e.index, e.row);
 				});
 			} catch(e) {
-				alert("Uh oh, I think something went terribly wrong. :(\nI'm working on this issue, but for now you can restart the app.");
+				alert("Uh oh, I think something went terribly wrong. :(\nFor now you can refresh or try to restart the app.");
 			}
 
 			//next server, next row
