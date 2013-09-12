@@ -7,7 +7,7 @@ var b_close = Ti.UI.createButton({
 });
 
 b_close.addEventListener('click', function(e) {
-	win.close();
+	win.container.close();
 });
 
 win.setLeftNavButton(b_close);

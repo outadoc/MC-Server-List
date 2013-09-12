@@ -8,25 +8,28 @@
 	
 	Titanium.UI.setBackgroundColor('#1F150D');
 	
-	var tabgroup = Ti.UI.createTabGroup();
-
-	var win_list = Ti.UI.createWindow({
+	var tabgroup = Ti.UI.createTabGroup(),
+		Utils = require('/includes/Utils'),
+	
+	win_list = Ti.UI.createWindow({
 		url: 'views/list.js',
 		title: I('main.title'),
-		barColor: '#806854',
+		barColor: Utils.getNavBarColor(),
+		navTintColor: Utils.getTintColor(),
 		barImage: 'img/menubar.png',
 		tabBarHidden: true,
-		backgroundColor: 'white'
+		backgroundColor: 'white',
+		statusBarStyle: (Utils.getMajorOsVersion() < 7) ? Ti.UI.iPhone.StatusBar.DEFAULT : undefined
 	});
-
+	
 	if(Ti.App.Properties.getBool('mcStyledUI', true)) {
 		win_list.setBackgroundImage('/img/full-bg.png');
 	}
 
-	var tab1 = Ti.UI.createTab({
+	tabgroup.addTab(Ti.UI.createTab({
 		window: win_list
-	});
-
-	tabgroup.addTab(tab1);
+	}));
+	
 	tabgroup.open();
+	
 })();

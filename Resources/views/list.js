@@ -1,12 +1,13 @@
 var win = Ti.UI.currentWindow;
 
-var ServerHandler = require('/includes/ServerHandler');
 Ti.include('/includes/lib/json.i18n.js');
 
-var isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
-var defaultBarColor = '#806854';
-
-var tableView = require('/includes/PullToRefresh')({
+var ServerHandler = require('/includes/ServerHandler'),
+	Utils = require('/includes/Utils'),
+	
+	isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true),
+	
+tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,
 	scrollIndicatorStyle: Ti.UI.iPhone.ScrollIndicatorStyle.WHITE,
 	editable: true
@@ -21,12 +22,12 @@ win.add(tableView);
 
 function updateList() {
 	//opening the database containing the servers that we will display
-	var db = Ti.Database.open('servers');
-	var servers = db.execute('SELECT * FROM servers');
+	var db = Ti.Database.open('servers'),
+		servers = db.execute('SELECT * FROM servers'), 
+		i = 0; //this index corresponds to the tableviewrow id
+		
 	//erase the existing tableview entries
 	tableView.setData([]);
-	//this index corresponds to the tableviewrow id
-	var i = 0;
 
 	if(servers.rowCount < 1) {
 		tableView.appendRow(ServerHandler.getEmptyPlaceholderRow());
@@ -85,7 +86,8 @@ function rowClickHandler(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
 		title: I('addServer.titleEdit'),
-		barColor: defaultBarColor,
+		barColor: Utils.getNavBarColor(),
+		tintColor: Utils.getTintColor(),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png',
 		serverIDToEdit: e.rowData.data.sqlid
@@ -109,16 +111,34 @@ b_add.addEventListener('click', function(e) {
 	var win_add = Ti.UI.createWindow({
 		url: 'server-info.js',
 		title: I('addServer.title'),
-		barColor: defaultBarColor,
+		barColor: Utils.getNavBarColor(),
+		navTintColor: Utils.getTintColor(),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png'
 	});
 
-	win_add.addEventListener('close', function(e) {
+	container = Ti.UI.createWindow({
+		navBarHidden: true
+	}),
+	
+	navGroup = Ti.UI.iPhone.createNavigationGroup({
+		window: win_add,
+		tintColor: Utils.getTintColor()
+	});
+
+	container.add(navGroup);
+	
+	container.addEventListener('close', function() {		
+		container = null;
+		navGroup = null;
+		win_add = null;
+		
 		updateList();
 	});
 
-	win_add.open({
+	win_add.container = container;
+
+	container.open({
 		modal: true
 	});
 });
@@ -135,12 +155,31 @@ b_info.addEventListener('click', function(e) {
 	var win_info = Ti.UI.createWindow({
 		url: 'credits.js',
 		title: I('credits.title'),
-		barColor: defaultBarColor,
+		barColor: Utils.getNavBarColor(),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png'
 	});
 
-	win_info.open({
+	container = Ti.UI.createWindow({
+		navBarHidden: true
+	}),
+	
+	navGroup = Ti.UI.iPhone.createNavigationGroup({
+		window: win_info,
+		tintColor: Utils.getTintColor()
+	});
+
+	container.add(navGroup);
+	
+	container.addEventListener('close', function() {			
+		container = null;
+		navGroup = null;
+		win_info = null;
+	});
+
+	win_info.container = container;
+
+	container.open({
 		modal: true,
 		modalTransitionStyle: Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL
 	});
