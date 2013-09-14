@@ -93,11 +93,28 @@ function rowClickHandler(e) {
 		serverIDToEdit: e.rowData.data.sqlid
 	});
 
-	win_add.addEventListener('close', function(e) {
+	container = Ti.UI.createWindow({
+		navBarHidden: true
+	}),
+	
+	navGroup = Ti.UI.iPhone.createNavigationGroup({
+		window: win_add,
+		tintColor: Utils.getTintColor()
+	});
+
+	container.add(navGroup);
+	
+	container.addEventListener('close', function() {	
+		container = null;
+		navGroup = null;
+		win_add = null;
+		
 		updateList();
 	});
 
-	win_add.open({
+	win_add.container = container;
+
+	container.open({
 		modal: true
 	});
 }
@@ -180,8 +197,7 @@ b_info.addEventListener('click', function(e) {
 	win_info.container = container;
 
 	container.open({
-		modal: true,
-		modalTransitionStyle: Ti.UI.iPhone.MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL
+		modal: true
 	});
 });
 
