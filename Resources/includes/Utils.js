@@ -10,7 +10,7 @@
 	};
 	
 	exports.getTintColor = function() {
-		return '#FFFFFF'
+		return '#FFFFFF';
 	};
 	
 })();
