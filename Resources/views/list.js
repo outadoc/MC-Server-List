@@ -90,7 +90,8 @@ function rowClickHandler(e) {
 		tintColor: Utils.getTintColor(),
 		barImage: '/img/menubar.png',
 		backgroundImage: '/img/full-bg.png',
-		serverIDToEdit: e.rowData.data.sqlid
+		serverIDToEdit: e.rowData.data.sqlid,
+		translucent: false
 	});
 
 	container = Ti.UI.createWindow({
@@ -131,7 +132,8 @@ b_add.addEventListener('click', function(e) {
 		barColor: Utils.getNavBarColor(),
 		navTintColor: Utils.getTintColor(),
 		barImage: '/img/menubar.png',
-		backgroundImage: '/img/full-bg.png'
+		backgroundImage: '/img/full-bg.png',
+		translucent: false
 	});
 
 	container = Ti.UI.createWindow({
@@ -174,7 +176,8 @@ b_info.addEventListener('click', function(e) {
 		title: I('credits.title'),
 		barColor: Utils.getNavBarColor(),
 		barImage: '/img/menubar.png',
-		backgroundImage: '/img/full-bg.png'
+		backgroundImage: '/img/full-bg.png',
+		translucent: false
 	});
 
 	container = Ti.UI.createWindow({

@@ -19,6 +19,7 @@
 		barImage: 'img/menubar.png',
 		tabBarHidden: true,
 		backgroundColor: 'white',
+		translucent: false,
 		statusBarStyle: (Utils.getMajorOsVersion() < 7) ? Ti.UI.iPhone.StatusBar.DEFAULT : undefined
 	});
 	

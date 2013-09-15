@@ -6,7 +6,7 @@
 	};
 	
 	exports.getNavBarColor = function() {
-		return '#806854';
+		return '#877261';
 	};
 	
 	exports.getTintColor = function() {
