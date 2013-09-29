@@ -4,19 +4,14 @@ Ti.include('/includes/lib/json.i18n.js');
 
 var ServerHandler = require('/includes/ServerHandler'),
 	Utils = require('/includes/Utils'),
-	
-	isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true),
-	
+		
 tableView = require('/includes/PullToRefresh')({
 	style: Ti.UI.iPhone.TableViewStyle.PLAIN,
 	scrollIndicatorStyle: Ti.UI.iPhone.ScrollIndicatorStyle.WHITE,
-	editable: true
+	editable: true,
+	separatorColor: '#4b4b4b',
+	backgroundColor: Utils.getBackgroundColor()
 });
-
-if(isMcStyle) {
-	tableView.setSeparatorColor('#4b4b4b');
-	tableView.setBackgroundImage('/img/full-bg.png');
-}
 
 win.add(tableView);
 
@@ -88,8 +83,7 @@ function rowClickHandler(e) {
 		title: I('addServer.titleEdit'),
 		barColor: Utils.getNavBarColor(),
 		tintColor: Utils.getTintColor(),
-		barImage: '/img/menubar.png',
-		backgroundImage: '/img/full-bg.png',
+		backgroundColor: Utils.getBackgroundColor(),
 		serverIDToEdit: e.rowData.data.sqlid,
 		translucent: false
 	});
@@ -131,8 +125,7 @@ b_add.addEventListener('click', function(e) {
 		title: I('addServer.title'),
 		barColor: Utils.getNavBarColor(),
 		navTintColor: Utils.getTintColor(),
-		barImage: '/img/menubar.png',
-		backgroundImage: '/img/full-bg.png',
+		backgroundColor: Utils.getBackgroundColor(),
 		translucent: false
 	});
 
@@ -175,8 +168,7 @@ b_info.addEventListener('click', function(e) {
 		url: 'credits.js',
 		title: I('credits.title'),
 		barColor: Utils.getNavBarColor(),
-		barImage: '/img/menubar.png',
-		backgroundImage: '/img/full-bg.png',
+		backgroundColor: Utils.getBackgroundColor(),
 		translucent: false
 	});
 

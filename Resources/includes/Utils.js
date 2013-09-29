@@ -6,11 +6,15 @@
 	};
 	
 	exports.getNavBarColor = function() {
-		return '#877261';
+		return '#705036';
 	};
 	
 	exports.getTintColor = function() {
 		return '#FFFFFF';
+	};
+	
+	exports.getBackgroundColor = function() {
+		return '#ffffff';
 	};
 	
 })();

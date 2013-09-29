@@ -23,7 +23,8 @@ win.add(scrollView);
 
 var img_logo = Ti.UI.createImageView({
 	image: '/img/icon-large.png',
-	top: 10
+	top: 10,
+	width: 130
 });
 
 scrollView.add(img_logo);

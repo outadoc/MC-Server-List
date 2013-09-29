@@ -15,17 +15,13 @@
 		url: 'views/list.js',
 		title: I('main.title'),
 		barColor: Utils.getNavBarColor(),
+		backgroundColor: Utils.getBackgroundColor(),
 		navTintColor: Utils.getTintColor(),
-		barImage: 'img/menubar.png',
 		tabBarHidden: true,
 		backgroundColor: 'white',
 		translucent: false,
 		statusBarStyle: (Utils.getMajorOsVersion() < 7) ? Ti.UI.iPhone.StatusBar.DEFAULT : undefined
 	});
-	
-	if(Ti.App.Properties.getBool('mcStyledUI', true)) {
-		win_list.setBackgroundImage('/img/full-bg.png');
-	}
 
 	tabgroup.addTab(Ti.UI.createTab({
 		window: win_list
