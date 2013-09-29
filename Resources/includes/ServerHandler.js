@@ -1,5 +1,3 @@
-exports.isMcStyle = Ti.App.Properties.getBool('mcStyledUI', true);
-
 exports.init = function(name, host, port) {
 	//initialize the object with the info regarding the server
 	exports.data = {};
@@ -146,12 +144,10 @@ exports.getRow = function(data, index, callback, state) {
 	
 	row.add(view_container_info);
 
-	//note: the (exports.isMcStyle) condition checks if the user wants a GUI that looks like the original Minecraft server list
-
 	//name of the server
 	var lbl_name = Ti.UI.createLabel({
 		text: data.name,
-		color: (exports.isMcStyle) ? 'white' : 'black',
+		color: 'black',
 		left: 10,
 		width: 250,
 		height: 19
@@ -162,7 +158,7 @@ exports.getRow = function(data, index, callback, state) {
 	//ping of the server
 	var lbl_ping = Ti.UI.createLabel({
 		text: (state == exports.state.ERROR) ? '0 ms' : data.ping + ' ms',
-		color: (exports.isMcStyle) ? 'lightGray' : 'gray',
+		color: 'gray',
 		font: {
 			fontSize: 16
 		},
@@ -187,7 +183,7 @@ exports.getRow = function(data, index, callback, state) {
 	//number of slots available
 	var lbl_slots = Ti.UI.createLabel({
 		text: (state == exports.state.ERROR) ? '??/??' : data.disp + '/' + data.max,
-		color: (exports.isMcStyle) ? 'lightGray' : 'gray',
+		color: 'gray',
 		font: {
 			fontSize: 16
 		},
@@ -200,7 +196,7 @@ exports.getRow = function(data, index, callback, state) {
 	//ip address of the server
 	var lbl_host = Ti.UI.createLabel({
 		text: (data.port == 25565) ? data.host : (data.host + ':' + data.port),
-		color: (exports.isMcStyle) ? '#4b4b4b' : 'lightGray',
+		color: 'lightGray',
 		font: {
 			fontSize: 16
 		},
@@ -231,22 +227,12 @@ exports.getRow = function(data, index, callback, state) {
 		lbl_desc.setText(data.desc);
 	}
 
-	if(exports.isMcStyle) {
-		//if we want a minecraft tiled background, do eet
-		row.setBackgroundColor('transparent');
-	}
-
 	//setting the right colors following the state
 	if(state == exports.state.ERROR) {
 		//if it's an error, make it bloody
 		lbl_desc.setColor('red');
 	} else {
-		if(exports.isMcStyle) {
-			//if it's minecraft style
-			lbl_desc.setColor('lightGray');
-		} else {
-			lbl_desc.setColor('gray');
-		}
+		lbl_desc.setColor('gray');
 	}
 
 	//finally, send the row to the callback method so it can be added to the tableview where it belongs
@@ -272,7 +258,7 @@ exports.getEmptyPlaceholderRow = function() {
 			fontWeight: 'bold',
 			fontSize: 17
 		},
-		color: (exports.isMcStyle) ? 'white' : 'black',
+		color: 'black',
 		top: 5,
 		left: 10,
 		right: 10,
@@ -291,7 +277,7 @@ exports.getEmptyPlaceholderRow = function() {
 		font: {
 			fontSize: 15
 		},
-		color: (exports.isMcStyle) ? 'gray' : 'lightgray',
+		color: 'lightgray',
 		height: Ti.UI.SIZE,
 		width: Ti.UI.FILL
 	});

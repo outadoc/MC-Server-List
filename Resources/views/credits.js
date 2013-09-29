@@ -32,15 +32,10 @@ scrollView.add(img_logo);
 var lbl_app = Ti.UI.createLabel({
 	text: Ti.App.getName() + ' v' + Ti.App.getVersion(),
 	top: 0,
-	color: '#F8F8F8',
+	color: '#000000',
 	font: {
 		fontSize: 20,
 		fontWeight: 'bold'
-	},
-	shadowColor: 'black',
-	shadowOffset: {
-		x: 0,
-		y: 1
 	}
 });
 
@@ -51,12 +46,7 @@ var lbl_credits = Ti.UI.createLabel({
 	font: {
 		fontSize: 16
 	},
-	color: 'white',
-	shadowColor: 'black',
-	shadowOffset: {
-		x: 0,
-		y: 1
-	},
+	color: '#000000',
 	width: 280,
 	top: 15,
 	height: Ti.UI.SIZE,

@@ -13,7 +13,7 @@ win.setLeftNavButton(b_close);
 
 var lbl_name = Ti.UI.createLabel({
 	text: I('addServer.labels.name.title'),
-	color: 'white',
+	color: '#000000',
 	left: 20,
 	top: 20
 });
@@ -34,7 +34,7 @@ win.add(txtfield_name);
 
 var lbl_host = Ti.UI.createLabel({
 	text: I('addServer.labels.host.title'),
-	color: 'white',
+	color: '#000000',
 	left: 20,
 	top: 100
 });
@@ -58,7 +58,7 @@ win.add(txtfield_host);
 
 var lbl_port = Ti.UI.createLabel({
 	text: I('addServer.labels.port.title'),
-	color: 'white',
+	color: '#000000',
 	left: 200,
 	top: 100
 });
