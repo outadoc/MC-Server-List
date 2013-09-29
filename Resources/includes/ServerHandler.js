@@ -218,7 +218,7 @@ exports.getRow = function(data, index, callback, state) {
 		//show a spinning wheel to indicate it's trying to fetch information from the server
 		var indicator = Ti.UI.createActivityIndicator({
 			right: 10,
-			style: Ti.UI.iPhone.ActivityIndicatorStyle.PLAIN
+			style: Ti.UI.iPhone.ActivityIndicatorStyle.DARK
 		});
 		row.add(indicator);
 		indicator.show();
