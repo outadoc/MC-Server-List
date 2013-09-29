@@ -41,6 +41,7 @@ function updateList() {
 			try {
 				//create temporary row, that will say "polling server..."
 				ServerHandler.getRow(data, i, function(e) {
+					e.row.data = e.data;
 					tableView.appendRow(e.row);
 				}, ServerHandler.state.POLLING);
 
@@ -69,7 +70,7 @@ function updateList() {
 Ti.App.addEventListener('reload', updateList);
 
 tableView.addEventListener('delete', function(e) {
-	if(e.rowData.data.sqlid !== undefined) {
+	if(e.rowData.data != null) {
 		var db = Ti.Database.open('servers');
 		db.execute('DELETE FROM servers WHERE id=?', e.rowData.data.sqlid);
 		db.close();
